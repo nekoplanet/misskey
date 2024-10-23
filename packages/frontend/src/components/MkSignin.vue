@@ -235,7 +235,7 @@ function onSubmit(): void {
 	}
 }
 
-function loginFailed(err: any): void {
+function loginFailed(err: Misskey.entities.Error): void {
 	switch (err.id) {
 		case '6cc579cc-885d-43d8-95c2-b8c7fc963280': {
 			os.alert({
@@ -255,6 +255,14 @@ function loginFailed(err: any): void {
 		}
 		case 'e03a5f46-d309-4865-9b69-56282d94e1eb': {
 			showSuspendedDialog();
+			break;
+		}
+		case '2fe70810-0ed2-47db-a70b-dc3ecbf5f069': {
+			os.alert({
+				type: 'error',
+				title: i18n.ts.loginFailed,
+				text: i18n.ts.registerHasNotBeenApprovedYet,
+			});
 			break;
 		}
 		case '22d05606-fbcf-421a-a2db-b32610dcfd1b': {
